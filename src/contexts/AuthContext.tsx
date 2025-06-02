@@ -5,12 +5,14 @@ interface User {
   id: string;
   name: string;
   email: string;
+  profileImage?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
+  updateProfile: (data: Partial<User>) => void;
   isLoading: boolean;
 }
 
@@ -66,10 +68,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('user');
   };
 
+  const updateProfile = (data: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...data };
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    }
+  };
+
   const value = {
     user,
     login,
     logout,
+    updateProfile,
     isLoading
   };
 
