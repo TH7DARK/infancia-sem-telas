@@ -11,6 +11,7 @@ import Videos from "./pages/Videos";
 import Tips from "./pages/Tips";
 import Favorites from "./pages/Favorites";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/tips" element={<Tips />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
