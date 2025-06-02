@@ -1,6 +1,6 @@
 
-import { useState, useEffect } from "react";
-import { Camera, Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+import { Camera, Upload, Eye, EyeOff } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -24,22 +24,18 @@ const UserProfileModal = ({ open, onOpenChange }: UserProfileModalProps) => {
   const { toast } = useToast();
   
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name: user?.name || "",
+    email: user?.email || "",
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
   
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(user?.profileImage || "");
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        name: user.name || "",
-        email: user.email || "",
-      });
-      setProfileImage(user.profileImage || "");
-    }
-  }, [user]);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -57,18 +53,48 @@ const UserProfileModal = ({ open, onOpenChange }: UserProfileModalProps) => {
     setIsLoading(true);
 
     try {
+      // Validação básica
+      if (formData.newPassword && formData.newPassword !== formData.confirmPassword) {
+        toast({
+          title: "Erro",
+          description: "A nova senha e confirmação não coincidem.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (formData.newPassword && formData.newPassword.length < 6) {
+        toast({
+          title: "Erro",
+          description: "A nova senha deve ter pelo menos 6 caracteres.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Simular atualização do perfil
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
       const updatedData = {
         name: formData.name,
         email: formData.email,
         profileImage: profileImage,
       };
 
-      await updateProfile(updatedData);
+      updateProfile(updatedData);
 
       toast({
         title: "Perfil atualizado!",
         description: "Suas informações foram salvas com sucesso.",
       });
+
+      // Limpar campos de senha
+      setFormData(prev => ({
+        ...prev,
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      }));
 
       onOpenChange(false);
     } catch (error) {
@@ -85,8 +111,6 @@ const UserProfileModal = ({ open, onOpenChange }: UserProfileModalProps) => {
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
-
-  if (!user) return null;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -147,6 +171,89 @@ const UserProfileModal = ({ open, onOpenChange }: UserProfileModalProps) => {
                 placeholder="seu@email.com"
                 required
               />
+            </div>
+          </div>
+
+          {/* Alterar Senha */}
+          <div className="space-y-4 border-t pt-4">
+            <h3 className="font-medium text-gray-800">Alterar Senha</h3>
+            
+            <div className="space-y-2">
+              <Label htmlFor="currentPassword">Senha Atual</Label>
+              <div className="relative">
+                <Input
+                  id="currentPassword"
+                  type={showCurrentPassword ? "text" : "password"}
+                  value={formData.currentPassword}
+                  onChange={(e) => handleInputChange("currentPassword", e.target.value)}
+                  placeholder="Digite sua senha atual"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                >
+                  {showCurrentPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-400" />
+                  )}
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="newPassword">Nova Senha</Label>
+              <div className="relative">
+                <Input
+                  id="newPassword"
+                  type={showNewPassword ? "text" : "password"}
+                  value={formData.newPassword}
+                  onChange={(e) => handleInputChange("newPassword", e.target.value)}
+                  placeholder="Digite a nova senha"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                >
+                  {showNewPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-400" />
+                  )}
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword">Confirmar Nova Senha</Label>
+              <div className="relative">
+                <Input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={formData.confirmPassword}
+                  onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
+                  placeholder="Confirme a nova senha"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-400" />
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
 

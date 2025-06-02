@@ -29,9 +29,9 @@ const Login = () => {
       return;
     }
 
-    const result = await login(email, password);
+    const success = await login(email, password);
     
-    if (result.success) {
+    if (success) {
       toast({
         title: "Login realizado com sucesso!",
         description: "Bem-vindo de volta ao PrimeiroPasso.",
@@ -40,7 +40,7 @@ const Login = () => {
     } else {
       toast({
         title: "Erro no login",
-        description: result.error || "Erro desconhecido. Tente novamente.",
+        description: "Email ou senha inválidos. Tente novamente.",
         variant: "destructive",
       });
     }
@@ -120,6 +120,9 @@ const Login = () => {
               <Link to="/signup" className="text-blue-600 hover:underline font-medium">
                 Criar conta
               </Link>
+            </p>
+            <p className="text-xs text-gray-500">
+              Para testar: use qualquer email e senha com 6+ caracteres
             </p>
           </div>
         </CardContent>

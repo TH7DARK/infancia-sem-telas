@@ -1,9 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
 
-interface UserProfile {
+interface User {
   id: string;
   name: string;
   email: string;
@@ -11,12 +9,10 @@ interface UserProfile {
 }
 
 interface AuthContextType {
-  user: UserProfile | null;
-  session: Session | null;
-  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  signup: (email: string, password: string, name: string) => Promise<{ success: boolean; error?: string }>;
-  logout: () => Promise<void>;
-  updateProfile: (data: Partial<UserProfile>) => Promise<void>;
+  user: User | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+  updateProfile: (data: Partial<User>) => void;
   isLoading: boolean;
 }
 
@@ -31,128 +27,58 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserProfile | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchUserProfile = async (userId: string) => {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .single();
-
-    if (data && !error) {
-      setUser({
-        id: data.id,
-        name: data.name || '',
-        email: data.email || '',
-        profileImage: data.profile_image || undefined
-      });
-    }
-  };
-
   useEffect(() => {
-    // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('Auth state changed:', event, session);
-        setSession(session);
-        
-        if (session?.user) {
-          // Defer the profile fetch to avoid potential deadlocks
-          setTimeout(() => {
-            fetchUserProfile(session.user.id);
-          }, 0);
-        } else {
-          setUser(null);
-        }
-        
-        setIsLoading(false);
-      }
-    );
-
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session?.user) {
-        fetchUserProfile(session.user.id);
-      }
-      setIsLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    // Verificar se há usuário salvo no localStorage
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+    setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    setIsLoading(false);
-
-    if (error) {
-      return { success: false, error: error.message };
-    }
-
-    return { success: true };
-  };
-
-  const signup = async (email: string, password: string, name: string) => {
-    setIsLoading(true);
+    // Simulação de login - em um app real, isso seria uma chamada à API
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/`,
-        data: {
-          name: name
-        }
-      }
-    });
-
-    setIsLoading(false);
-
-    if (error) {
-      return { success: false, error: error.message };
+    // Validação simples para demonstração
+    if (email && password.length >= 6) {
+      const newUser: User = {
+        id: '1',
+        name: email.split('@')[0],
+        email: email
+      };
+      
+      setUser(newUser);
+      localStorage.setItem('user', JSON.stringify(newUser));
+      setIsLoading(false);
+      return true;
     }
-
-    return { success: true };
+    
+    setIsLoading(false);
+    return false;
   };
 
-  const logout = async () => {
-    await supabase.auth.signOut();
+  const logout = () => {
     setUser(null);
-    setSession(null);
+    localStorage.removeItem('user');
   };
 
-  const updateProfile = async (profileData: Partial<UserProfile>) => {
-    if (!user) return;
-
-    const { error } = await supabase
-      .from('profiles')
-      .update({
-        name: profileData.name,
-        email: profileData.email,
-        profile_image: profileData.profileImage,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', user.id);
-
-    if (!error) {
-      setUser({ ...user, ...profileData });
+  const updateProfile = (data: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...data };
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
     }
   };
 
   const value = {
     user,
-    session,
     login,
-    signup,
     logout,
     updateProfile,
     isLoading
