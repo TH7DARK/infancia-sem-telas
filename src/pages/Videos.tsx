@@ -14,11 +14,11 @@ const Videos = () => {
       id: 1,
       title: "Massagem Relaxante para Bebês",
       description: "Aprenda técnicas de massagem que acalmam e fortalecem o vínculo com seu bebê.",
-      thumbnail: "/placeholder.svg",
-      duration: "2:10",
+      thumbnail: "/images.png",
+      duration: "02:10",
       category: "cuidados",
       youtubeId: "zyUxQHmKV9M",
-      ageGroup: "0-12m"
+      ageGroup: "0-12m""
     },
     {
       id: 2,
