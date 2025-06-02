@@ -29,7 +29,7 @@ const Index = () => {
   const quickStats = [
     { number: "100+", label: "Brincadeiras", icon: PlayCircle },
     { number: "50+", label: "Vídeos", icon: Video },
-    { number: "200+", label: "Dicas", icon: Lightbulb },
+    { number: "20+", label: "Dicas", icon: Lightbulb },
   ];
 
   return (
