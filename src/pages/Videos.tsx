@@ -15,7 +15,7 @@ const Videos = () => {
       title: "Massagem Relaxante para Bebês",
       description: "Aprenda técnicas de massagem que acalmam e fortalecem o vínculo com seu bebê.",
       thumbnail: "/placeholder.svg",
-      duration: "8:32",
+      duration: "2:10",
       category: "cuidados",
       youtubeId: "zyUxQHmKV9M",
       ageGroup: "0-12m"
@@ -25,9 +25,9 @@ const Videos = () => {
       title: "Brincadeiras Sensoriais - 0 a 6 meses",
       description: "Estimule os sentidos do seu bebê com atividades seguras e divertidas.",
       thumbnail: "/placeholder.svg",
-      duration: "12:15",
+      duration: "20:39",
       category: "brincadeiras",
-      youtubeId: "dQw4w9WgXcQ",
+      youtubeId: "S7wTQX0GuMk",
       ageGroup: "0-6m"
     },
     {
@@ -35,9 +35,9 @@ const Videos = () => {
       title: "Introdução à Música para Bebês",
       description: "Como usar música para desenvolver a linguagem e coordenação.",
       thumbnail: "/placeholder.svg",
-      duration: "10:45",
+      duration: "08:31",
       category: "desenvolvimento",
-      youtubeId: "dQw4w9WgXcQ",
+      youtubeId: "1I2GYUsMq2Y",
       ageGroup: "6-18m"
     },
     {
@@ -45,9 +45,9 @@ const Videos = () => {
       title: "Rotina de Sono Saudável",
       description: "Estabeleça uma rotina de sono que funciona para toda a família.",
       thumbnail: "/placeholder.svg",
-      duration: "15:20",
+      duration: "08:48",
       category: "sono",
-      youtubeId: "dQw4w9WgXcQ",
+      youtubeId: "ONBNtsQcWBI",
       ageGroup: "0-24m"
     },
     {
@@ -55,9 +55,9 @@ const Videos = () => {
       title: "Alimentação Complementar",
       description: "Guia completo para introduzir alimentos sólidos de forma segura.",
       thumbnail: "/placeholder.svg",
-      duration: "18:30",
+      duration: "05:26",
       category: "alimentacao",
-      youtubeId: "dQw4w9WgXcQ",
+      youtubeId: "1TeGyXsZA3U",
       ageGroup: "6-12m"
     },
     {
@@ -65,9 +65,9 @@ const Videos = () => {
       title: "Atividades Motoras para Toddlers",
       description: "Exercícios divertidos para desenvolver coordenação e força.",
       thumbnail: "/placeholder.svg",
-      duration: "14:25",
+      duration: "08:04",
       category: "brincadeiras",
-      youtubeId: "dQw4w9WgXcQ",
+      youtubeId: "SaoTKs4DRIo",
       ageGroup: "12-24m"
     }
   ];
