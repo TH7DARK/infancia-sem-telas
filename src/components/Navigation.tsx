@@ -1,12 +1,14 @@
 
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Baby, PlayCircle, Video, Lightbulb, Heart, Menu, X } from "lucide-react";
+import { Baby, PlayCircle, Video, Lightbulb, Heart, Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   const navItems = [
     { path: "/", icon: Baby, label: "Início" },
@@ -15,6 +17,11 @@ const Navigation = () => {
     { path: "/tips", icon: Lightbulb, label: "Dicas" },
     { path: "/favorites", icon: Heart, label: "Favoritos" },
   ];
+
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+  };
 
   return (
     <nav className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
@@ -28,7 +35,7 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-1">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -47,6 +54,30 @@ const Navigation = () => {
                 </Link>
               );
             })}
+            
+            {/* User Menu */}
+            {user ? (
+              <div className="flex items-center space-x-2 ml-4">
+                <div className="flex items-center space-x-2 px-3 py-2 bg-blue-50 rounded-lg">
+                  <User className="h-4 w-4 text-blue-600" />
+                  <span className="text-sm text-blue-600 font-medium">{user.name}</span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  className="text-gray-600 hover:bg-gray-100"
+                >
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </div>
+            ) : (
+              <Link to="/login">
+                <Button variant="outline" className="ml-4">
+                  Entrar
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -83,6 +114,32 @@ const Navigation = () => {
                   </Link>
                 );
               })}
+              
+              {/* Mobile User Menu */}
+              {user ? (
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center space-x-2 px-4 py-2 mb-2">
+                    <User className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm text-blue-600 font-medium">{user.name}</span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    onClick={handleLogout}
+                    className="w-full justify-start px-4 py-3 text-gray-600 hover:bg-gray-100"
+                  >
+                    <LogOut className="h-5 w-5 mr-2" />
+                    Sair
+                  </Button>
+                </div>
+              ) : (
+                <div className="pt-4 border-t border-gray-200">
+                  <Link to="/login" onClick={() => setIsOpen(false)}>
+                    <Button variant="outline" className="w-full">
+                      Entrar
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         )}
