@@ -10,8 +10,208 @@ const Tips = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
 
   const tips = [
-    {
-      id: 1,
+     {
+        "id": 1,
+        "title": "O Poder do Contato Pele a Pele",
+        "content": "O contato pele a pele logo após o nascimento e durante os primeiros meses é fundamental para regular a temperatura corporal, fortalecer o vínculo e estimular a produção de leite materno.",
+        "category": "vinculo",
+        "readTime": "3 min",
+        "expert": "Dr. Ana Silva - Pediatra",
+        "ageGroup": "0-6m",
+        "icon": "🤱"
+      },
+      {
+        "id": 2,
+        "title": "Importância da Amamentação Exclusiva",
+        "content": "Amamentar exclusivamente até os 6 meses fortalece o sistema imunológico, previne alergias e promove um desenvolvimento saudável.",
+        "category": "alimentação",
+        "readTime": "2 min",
+        "expert": "Enf. Carla Mendes - Consultora em Amamentação",
+        "ageGroup": "0-6m",
+        "icon": "🍼"
+      },
+      {
+        "id": 3,
+        "title": "Banho Seguro e Aconchegante",
+        "content": "Use água morna, segure o bebê com firmeza e evite correntes de ar para proporcionar um momento seguro e relaxante durante o banho.",
+        "category": "higiene",
+        "readTime": "2 min",
+        "expert": "Dr. Lucas Ferreira - Pediatra",
+        "ageGroup": "0-6m",
+        "icon": "🛁"
+      },
+      {
+        "id": 4,
+        "title": "Atenção à Troca de Fraldas",
+        "content": "Trocar a fralda com frequência evita assaduras e mantém a pele do bebê saudável. Use lenços sem álcool e cremes protetores.",
+        "category": "higiene",
+        "readTime": "2 min",
+        "expert": "Dra. Beatriz Lima - Dermatopediatra",
+        "ageGroup": "0-6m",
+        "icon": "👶"
+      },
+      {
+        "id": 5,
+        "title": "Rotina de Sono Saudável",
+        "content": "Estabelecer uma rotina ajuda o bebê a dormir melhor. Mantenha horários regulares, um ambiente tranquilo e evite estímulos fortes antes de dormir.",
+        "category": "sono",
+        "readTime": "3 min",
+        "expert": "Dra. Renata Souza - Especialista em Sono Infantil",
+        "ageGroup": "0-12m",
+        "icon": "🌙"
+      },
+      {
+        "id": 6,
+        "title": "Vacinas em Dia",
+        "content": "Manter a caderneta de vacinação atualizada protege o bebê de doenças graves e fortalece seu sistema imunológico.",
+        "category": "saúde",
+        "readTime": "2 min",
+        "expert": "Dr. Rafael Torres - Infectologista",
+        "ageGroup": "0-12m",
+        "icon": "💉"
+      },
+      {
+        "id": 7,
+        "title": "Estimulação com Música",
+        "content": "Cantar para o bebê e ouvir músicas suaves estimula o desenvolvimento auditivo e emocional.",
+        "category": "desenvolvimento",
+        "readTime": "2 min",
+        "expert": "Dra. Júlia Rocha - Psicóloga Infantil",
+        "ageGroup": "0-12m",
+        "icon": "🎵"
+      },
+      {
+        "id": 8,
+        "title": "Massagem Infantil Relaxante",
+        "content": "A massagem alivia cólicas, melhora o sono e fortalece o vínculo afetivo entre pais e bebês.",
+        "category": "vinculo",
+        "readTime": "3 min",
+        "expert": "Enf. Letícia Andrade - Doula",
+        "ageGroup": "0-6m",
+        "icon": "💆‍♀️"
+      },
+      {
+        "id": 9,
+        "title": "Ambiente Seguro para Brincar",
+        "content": "Certifique-se de que o espaço onde o bebê fica é livre de objetos pequenos e cantos perigosos.",
+        "category": "segurança",
+        "readTime": "2 min",
+        "expert": "Dr. Felipe Gomes - Pediatra",
+        "ageGroup": "6-12m",
+        "icon": "🧸"
+      },
+      {
+        "id": 10,
+        "title": "Introdução Alimentar Consciente",
+        "content": "A partir dos 6 meses, alimentos saudáveis devem ser oferecidos com paciência e em ambiente calmo.",
+        "category": "alimentação",
+        "readTime": "3 min",
+        "expert": "Nut. Camila Freitas - Nutricionista Infantil",
+        "ageGroup": "6-12m",
+        "icon": "🍎"
+      },
+      {
+        "id": 11,
+        "title": "Contato Visual e Fala Constante",
+        "content": "Olhar nos olhos e conversar com o bebê fortalece o vínculo e estimula a linguagem.",
+        "category": "desenvolvimento",
+        "readTime": "2 min",
+        "expert": "Fono. Andréa Martins - Fonoaudióloga",
+        "ageGroup": "0-12m",
+        "icon": "👀"
+      },
+      {
+        "id": 12,
+        "title": "Evite o Uso de Telas",
+        "content": "Até os 2 anos, evite exposição a telas. Brincadeiras e interações reais são essenciais para o desenvolvimento.",
+        "category": "desenvolvimento",
+        "readTime": "2 min",
+        "expert": "Dra. Paula Neves - Neuropediatra",
+        "ageGroup": "0-24m",
+        "icon": "📵"
+      },
+      {
+        "id": 13,
+        "title": "Sinais de Fome e Saciedade",
+        "content": "Observar os sinais naturais de fome e saciedade evita superalimentação e favorece a autonomia alimentar.",
+        "category": "alimentação",
+        "readTime": "2 min",
+        "expert": "Nut. Bruna Carvalho - Nutricionista",
+        "ageGroup": "0-12m",
+        "icon": "🍽️"
+      },
+      {
+        "id": 14,
+        "title": "Exposição ao Sol com Segurança",
+        "content": "De 5 a 10 minutos de sol antes das 10h ajudam na produção de vitamina D. Evite horários de pico e use roupas adequadas.",
+        "category": "saúde",
+        "readTime": "2 min",
+        "expert": "Dr. Daniel Lima - Pediatra",
+        "ageGroup": "0-12m",
+        "icon": "☀️"
+      },
+      {
+        "id": 15,
+        "title": "Atenção aos Sinais de Cólicas",
+        "content": "Cólicas são comuns nos primeiros meses. Massagens, compressas mornas e o colo dos pais podem ajudar a aliviar.",
+        "category": "saúde",
+        "readTime": "2 min",
+        "expert": "Dra. Luiza Castro - Pediatra",
+        "ageGroup": "0-6m",
+        "icon": "😣"
+      },
+      {
+        "id": 16,
+        "title": "A Importância do Arrotar",
+        "content": "Ajudar o bebê a arrotar após as mamadas evita desconfortos e cólicas.",
+        "category": "alimentação",
+        "readTime": "2 min",
+        "expert": "Enf. Rafael Nunes - Enfermeiro Neonatal",
+        "ageGroup": "0-6m",
+        "icon": "👶🏻"
+      },
+      {
+        "id": 17,
+        "title": "Roupas Confortáveis",
+        "content": "Vista o bebê com roupas leves, fáceis de tirar e adequadas à temperatura do ambiente.",
+        "category": "cuidados",
+        "readTime": "1 min",
+        "expert": "Enf. Aline Barbosa - Enfermeira Pediátrica",
+        "ageGroup": "0-12m",
+        "icon": "👕"
+      },
+      {
+        "id": 18,
+        "title": "O Poder do Colo",
+        "content": "O colo transmite segurança, aconchego e confiança. Não tenha medo de 'acostumar no colo'.",
+        "category": "vinculo",
+        "readTime": "2 min",
+        "expert": "Dra. Marina Torres - Psicóloga",
+        "ageGroup": "0-6m",
+        "icon": "🫂"
+      },
+      {
+        "id": 19,
+        "title": "Mantenha Objetos Pessoais Higienizados",
+        "content": "Chupetas, mamadeiras e mordedores devem ser higienizados diariamente para evitar infecções.",
+        "category": "higiene",
+        "readTime": "2 min",
+        "expert": "Dr. Henrique Melo - Pediatra",
+        "ageGroup": "0-12m",
+        "icon": "🧼"
+      },
+      {
+        "id": 20,
+        "title": "Brincadeiras Sensoriais",
+        "content": "Estimule o bebê com brinquedos de diferentes texturas, sons e cores para promover o desenvolvimento cognitivo e motor.",
+        "category": "desenvolvimento",
+        "readTime": "3 min",
+        "expert": "Pedagoga Larissa Farias",
+        "ageGroup": "6-12m",
+        "icon": "🎨"
+      }    
+      {
+      id: 21,
       title: "O Poder do Contato Pele a Pele",
       content: "O contato pele a pele logo após o nascimento e durante os primeiros meses é fundamental para regular a temperatura corporal, fortalecer o vínculo e estimular a produção de leite materno.",
       category: "vinculo",
@@ -19,9 +219,9 @@ const Tips = () => {
       expert: "Dr. Ana Silva - Pediatra",
       ageGroup: "0-6m",
       icon: "🤱"
-    },
+      },
     {
-      id: 2,
+      id: 22,
       title: "Sinais de Sono do Bebê",
       content: "Observe sinais como bocejos, esfregar os olhos, ficar irritado ou menos ativo. Colocar o bebê para dormir nos primeiros sinais evita o cansaço excessivo e facilita o adormecer.",
       category: "sono",
@@ -31,7 +231,7 @@ const Tips = () => {
       icon: "😴"
     },
     {
-      id: 3,
+      id: 23,
       title: "Estimulação Visual nos Primeiros Meses",
       content: "Bebês nascem com visão limitada. Use objetos com alto contraste (preto e branco) a 20-25cm do rosto. Mova lentamente para estimular o rastreamento visual.",
       category: "desenvolvimento",
@@ -41,7 +241,7 @@ const Tips = () => {
       icon: "👁️"
     },
     {
-      id: 4,
+      id: 24,
       title: "Quando Introduzir Alimentos Sólidos",
       content: "A introdução alimentar deve começar aos 6 meses, quando o bebê consegue sentar com apoio, perdeu o reflexo de extrusão da língua e mostra interesse pela comida.",
       category: "alimentacao",
@@ -51,7 +251,7 @@ const Tips = () => {
       icon: "🥄"
     },
     {
-      id: 5,
+      id: 25,
       title: "Desenvolvimento da Linguagem",
       content: "Converse com seu bebê desde o nascimento. Use entonação variada, descreva suas ações e responda aos sons que ele faz. A leitura diária também é fundamental.",
       category: "desenvolvimento",
@@ -61,7 +261,7 @@ const Tips = () => {
       icon: "🗣️"
     },
     {
-      id: 6,
+      id: 26,
       title: "Criando Rotinas Flexíveis",
       content: "Estabeleça uma sequência de atividades previsíveis (banho, massagem, alimentação, sono) mas mantenha flexibilidade nos horários, respeitando as necessidades individuais do bebê.",
       category: "rotina",
@@ -71,7 +271,7 @@ const Tips = () => {
       icon: "⏰"
     },
     {
-      id: 7,
+      id: 27,
       title: "Segurança no Ambiente Doméstico",
       content: "Baby-proof sua casa progressivamente: proteja tomadas, cantos de móveis, gavetas com objetos perigosos e instale travas de segurança conforme o bebê se desenvolve.",
       category: "seguranca",
@@ -81,7 +281,7 @@ const Tips = () => {
       icon: "🏠"
     },
     {
-      id: 8,
+      id: 28,
       title: "Cuidando de Você, Mamãe/Papai",
       content: "Seu bem-estar afeta diretamente o bebê. Aceite ajuda, descanse quando possível, mantenha uma alimentação saudável e não hesite em buscar apoio profissional se necessário.",
       category: "autocuidado",
