@@ -17,7 +17,7 @@ const Videos = () => {
       thumbnail: "/placeholder.svg",
       duration: "8:32",
       category: "cuidados",
-      youtubeId: "dQw4w9WgXcQ",
+      youtubeId: "zyUxQHmKV9M",
       ageGroup: "0-12m"
     },
     {
