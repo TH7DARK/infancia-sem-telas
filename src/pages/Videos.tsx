@@ -22,6 +22,16 @@ const Videos = () => {
     },
     {
       id: 2,
+      title: "Massagem Relaxante para Bebês",
+      description: "Aprenda técnicas de massagem que acalmam e fortalecem o vínculo com seu bebê.",
+      thumbnail: "/placeholder.svg",
+      duration: "04:59",
+      category: "cuidados",
+      youtubeId: "sat7DKCo-bE",
+      ageGroup: "0-12m"
+    },
+    {
+      id: 3,
       title: "Brincadeiras Sensoriais - 0 a 6 meses",
       description: "Estimule os sentidos do seu bebê com atividades seguras e divertidas.",
       thumbnail: "/placeholder.svg",
@@ -31,7 +41,7 @@ const Videos = () => {
       ageGroup: "0-6m"
     },
     {
-      id: 3,
+      id: 4,
       title: "Introdução à Música para Bebês",
       description: "Como usar música para desenvolver a linguagem e coordenação.",
       thumbnail: "/placeholder.svg",
@@ -41,7 +51,7 @@ const Videos = () => {
       ageGroup: "6-18m"
     },
     {
-      id: 4,
+      id: 5,
       title: "Rotina de Sono Saudável",
       description: "Estabeleça uma rotina de sono que funciona para toda a família.",
       thumbnail: "/placeholder.svg",
@@ -51,7 +61,7 @@ const Videos = () => {
       ageGroup: "0-24m"
     },
     {
-      id: 5,
+      id: 6,
       title: "Alimentação Complementar",
       description: "Guia completo para introduzir alimentos sólidos de forma segura.",
       thumbnail: "/placeholder.svg",
@@ -61,7 +71,7 @@ const Videos = () => {
       ageGroup: "6-12m"
     },
     {
-      id: 6,
+      id: 7,
       title: "Atividades Motoras para Toddlers",
       description: "Exercícios divertidos para desenvolver coordenação e força.",
       thumbnail: "/placeholder.svg",
